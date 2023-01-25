@@ -2,6 +2,10 @@
 console.log("PMApp in TS begins...");
 class ProjectInput {
     constructor() {
+        this.submitHandler = (event) => {
+            event.preventDefault();
+            console.log(this.titleInputElement.value);
+        };
         this.templateElement = document.getElementById("project-input");
         this.hostElement = document.getElementById("app");
         const importedNode = document.importNode(this.templateElement.content, true);
@@ -13,12 +17,8 @@ class ProjectInput {
         this.attach();
         this.configure();
     }
-    submitHandler(event) {
-        event.preventDefault();
-        console.log(this.titleInputElement.value);
-    }
     configure() {
-        this.element.addEventListener("submit", this.submitHandler.bind(this));
+        this.element.addEventListener("submit", this.submitHandler);
     }
     attach() {
         this.hostElement.insertAdjacentElement("afterbegin", this.element);
